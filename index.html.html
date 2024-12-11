@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Pública de mi Módem</title>
+</head>
+<body>
+    <h1>Tu IP Pública es:</h1>
+    <p id="ip">Obteniendo IP...</p>
+
+    <script>
+        async function obtenerIPPublica() {
+            try {
+                const respuesta = await fetch('https://api.ipify.org?format=json');
+                const datos = await respuesta.json();
+                document.getElementById('ip').textContent = datos.ip;
+            } catch (error) {
+                document.getElementById('ip').textContent = "Error al obtener la IP.";
+                console.error("Error al obtener la IP pública:", error);
+            }
+        }
+        
+        obtenerIPPublica();
+    </script>
+</body>
+</html>
